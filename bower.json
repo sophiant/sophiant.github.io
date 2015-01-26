@@ -1,0 +1,20 @@
+{
+  "name": "sophiant",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "foundation": "zurb/bower-foundation"
+  },
+  "authors": [
+    "Chris Kraybill <ckraybill@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "source/bower_components",
+    "test",
+    "tests"
+  ]
+}
