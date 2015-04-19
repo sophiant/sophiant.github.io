@@ -2,6 +2,57 @@
 @import "normalize";
 @import "foundation.scss";
 
+.hero-panel {
+  @include panel();
+  height: 450px;
+
+  background: url(/images/bg-home.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  h2 {
+    padding: 0.25em;
+    line-height: 42px;
+    color: $white;
+    opacity: 1.0;
+  }
+}
+
+.hero-panel-smaller {
+  height: 250px;
+  background: url(/images/bg-other.jpg) no-repeat bottom center fixed;
+
+  h2 {
+    padding-top: 1em;
+  }
+}
+
+footer { background: #333; margin-top: 5em; padding: 24px 0 10px;
+
+  a { color: #666; padding: 3px 6px;
+    &:hover { color: #777; }
+  }
+
+   ul.address { margin: 0; display: inline-block; padding-bottom:0px; color: #666;
+    li { display: block; float: left; margin-left: 6px; font-weight: 700; font-size: 0.75rem;
+      a { color: #666; padding: 3px 6px;
+        &:hover { color: #777; }
+      }
+    }
+  }
+
+  ul.home-social { display: block; float: right; margin-bottom: 8px;
+    li { list-style: none; display: block; float: left; margin-left: 10px;
+      &:first-child { margin-left: 0; }
+      a { display: block; height: 50px; width: 50px; }
+    }
+  }
+
+  p.copyright { margin: 6px 0 0; font-size: 0.75rem; color: #666; }
+}
+
 // Or selectively include components
 // @import
 //   "foundation/components/accordion",

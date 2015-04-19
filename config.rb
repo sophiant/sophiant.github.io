@@ -33,14 +33,31 @@ end
 ###
 # Helpers
 ###
+helpers do
+  def top_bar_menu_item_to(link, url, opts={})
+    link = link_to(link, url, opts)
+    if current_resource.url == url_for(url)
+      prefix = '<li class="active">'
+    else
+      prefix = '<li>'
+    end
+    "#{prefix}#{link}</li>"
+  end
+end
 
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
+activate :deploy do |deploy|
+  deploy.method = :git
+  deploy.branch = 'master'
+end
 
 # Reload the browser automatically whenever files change
 configure :development do
   activate :livereload
 end
+
+redirect "about", :to => "about.html"
 
 # Methods defined in the helpers block are available in templates
 # helpers do
