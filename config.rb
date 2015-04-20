@@ -25,7 +25,7 @@ end
 # with_layout :admin do
 #   page "/admin/*"
 # end
-page "blog/*", layout: :article_layout
+page "blog/*", layout: :article
 
 # Proxy pages (http://middlemanapp.com/basics/dynamic-pages/)
 # proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {
@@ -50,9 +50,13 @@ end
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 activate :blog do |blog|
-  blog.prefix = 'blog'
+  blog.calendar_template = 'article_collection.html'
+  blog.paginate = true
   blog.permalink = '{year}/{month}/{title}.html'
+  blog.prefix = 'blog'
   blog.summary_separator = /\<\!--more--\>/
+  blog.tag_template = 'article_collection.html'
+  blog.taglink = 'category/{tag}.html'
 end
 
 activate :deploy do |deploy|
