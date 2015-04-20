@@ -51,7 +51,6 @@ end
 # activate :automatic_image_sizes
 activate :blog do |blog|
   blog.calendar_template = 'article_collection.html'
-  blog.paginate = true
   blog.permalink = '{year}/{month}/{title}.html'
   blog.prefix = 'blog'
   blog.summary_separator = /\<\!--more--\>/
