@@ -1,0 +1,10 @@
+<% wrap_layout :layout do %>
+<div class="row">
+  <div class="large-10 large-offset-1 columns">
+    <article>
+      <h1><%= current_article.title %></h1>
+      <%= yield %>
+    </article>
+  </div>
+</div>
+<% end %>

@@ -28,10 +28,10 @@
         <section class="top-bar-section">
           <!-- Right Nav Section -->
           <ul class="right">
-            <%= top_bar_menu_item_to('Home', '/') %>
+            <%= top_bar_menu_item_to('Home', '/index.html') %>
             <%= top_bar_menu_item_to('About', '/about.html') %>
             <%= top_bar_menu_item_to('Philosophy', '/philosophy.html') %>
-            <li><a href="#">Blog</a></li>
+            <%= top_bar_menu_item_to('Blog', '/blog.html') %>
           </ul>
         </section>
       </nav>
@@ -39,29 +39,7 @@
 
     <%= yield %>
 
-    <footer>
-      <div class="row">
-        <div class="medium-4 medium-4 push-8 columns">
-          <ul class="home-social">
-            <li><a href="http://www.twitter.com/ckraybill" class="twitter">Twitter</a></li>
-            <li><a href="https://github.com/sophiant" class="github">Github</a></li>
-            <li><a href="mailto:chris@sophiant.com" class="mail">Email</a></li>
-          </ul>
-        </div>
-
-        <div class="medium-8 medium-8 pull-4 columns">
-          <ul class="address">
-            <li>61020 River Bluff Trl.</li>
-            <li>&middot;</li>
-            <li>Bend, Oregon 97702</li>
-            <li>&middot;</li>
-            <li>Tel. (541) 719-8763</li>
-          </ul>
-        </div>
-
-        <p class="copyright">&copy; 2009&dash;2015 Sophiant, LLC. All rights reserved.</p>
-      </div>
-    </footer>
+    <%= partial "layouts/footer" %>
 
     <%= javascript_include_tag  "all" %>
   </body>

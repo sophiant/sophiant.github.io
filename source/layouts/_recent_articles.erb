@@ -1,0 +1,8 @@
+<h2>Recent Articles</h2>
+<ol>
+  <% blog.articles[0...5].each do |article| %>
+    <li>
+      <%= link_to article.title, article %>
+    </li>
+  <% end %>
+</ol>

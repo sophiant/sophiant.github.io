@@ -25,6 +25,7 @@ end
 # with_layout :admin do
 #   page "/admin/*"
 # end
+page "blog/*", layout: :article_layout
 
 # Proxy pages (http://middlemanapp.com/basics/dynamic-pages/)
 # proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {
@@ -35,18 +36,25 @@ end
 ###
 helpers do
   def top_bar_menu_item_to(link, url, opts={})
-    link = link_to(link, url, opts)
-    if current_resource.url == url_for(url)
-      prefix = '<li class="active">'
+    anchor_tag = link_to(link, url, opts)
+    if (current_resource.url == url_for(url)) ||
+      (link == 'Blog' && current_resource.url.include?('/blog'))
+        prefix = '<li class="active">'
     else
       prefix = '<li>'
     end
-    "#{prefix}#{link}</li>"
+    "#{prefix}#{anchor_tag}</li>"
   end
 end
 
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
+activate :blog do |blog|
+  blog.prefix = 'blog'
+  blog.permalink = '{year}/{month}/{title}.html'
+  blog.summary_separator = /\<\!--more--\>/
+end
+
 activate :deploy do |deploy|
   deploy.method = :git
   deploy.branch = 'master'
@@ -57,7 +65,7 @@ configure :development do
   activate :livereload
 end
 
-redirect "about", :to => "about.html"
+activate :directory_indexes
 
 # Methods defined in the helpers block are available in templates
 # helpers do
