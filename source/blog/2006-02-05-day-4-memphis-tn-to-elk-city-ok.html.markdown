@@ -37,4 +37,6 @@ States: TN, AR, OK</h6>
 
 <p>So thank you Arkansas for opening my eyes.  Not only did you help dispel the prejudices that I had towards your state, but also in making me aware that we are all facing these same contradictions in our own lives, in our own state, in our own minds.</p>
 
-<p>Parting Shot:<img src="http://www.sophiant.com/images/winery.jpg" style="float: right" alt=""/></p>
+<p>Parting Shot:</p>
+
+![Arkansas Winery](winery.jpg)

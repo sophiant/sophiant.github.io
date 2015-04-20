@@ -61,6 +61,42 @@ footer {
   p.copyright { margin: 6px 0 0; font-size: 0.75rem; color: #666; }
 }
 
+code {
+  background: #f7f7f7;
+  font-family: monaco, monospace;
+  font-size: 0.9rem;
+  margin: 0 .3rem;
+  outline: 1px solid #ccc;
+  padding: 0 3px;
+  white-space: nowrap;
+}
+
+pre {
+  background: #f7f7f7;
+  border: 1px solid #ddd;
+  line-height: 1.35em;
+  margin: 1.7rem 0;
+  margin-bottom: 2.7rem;
+  overflow-x: scroll;
+  padding: .5rem 1rem;
+  -webkit-overflow-scrolling: touch;
+  white-space: pre;
+  word-wrap: normal;
+  width: 947px;
+}
+
+pre code {
+  background: none;
+  color: #333;
+  display: block;
+  font-size: 1.8rem;
+  margin: 0;
+  outline: none;
+  padding: 10px;
+  white-space: inherit;
+  width: 947px;
+}
+
 // Or selectively include components
 // @import
 //   "foundation/components/accordion",

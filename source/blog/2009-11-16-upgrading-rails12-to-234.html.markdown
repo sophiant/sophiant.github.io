@@ -42,7 +42,9 @@ Now unfortunately that plugin hasn't been kept up to date with all of the latest
 
 So if you get something like this
 
-<code>undefined method `template_exists?' for #meh</code>
+<pre>
+undefined method `template_exists?' for #meh
+</pre>
 
 in your logs just add this method to the plugin. I added mine to the private section of scaffolding.rb just before the def render method
 

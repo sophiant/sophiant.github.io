@@ -21,4 +21,7 @@ States: OK, TX, NM</h6>
 <p>I ended up meeting a guy from NH who graduated schools at the same time I did.  He's a motivational speaker, traveling nationally to high schools and colleges doing leadership seminars.  He was intrigued by my trip and we spent the night chatting away on a number of unrelated topics, philosophy, raising families, you name it.  It was a great connection.</p>
 
 <p>So as I near home and get closer to my love, I am torn.  The road has worn me down and I need to take it slower.  It's also just supremely beautiful here.  Yet at the same time I want so badly to be home and with my wife.  I am writing this at the start of Day 6, and today I plan to at least go check out the Anasazi ruins.  I'll go further from the main "artery" of our national insterstate system than at any other point of this trip.  But something tells me it's going to be worth it.  I won't make as many miles today as I have in other days, which is all the harder knowing that I am closing in on home.  It will be, though, the last digression I think for this trip.</p>
-<p>Parting Shot: Sunrise somewhere in the middle of nowhere.<img src="http://www.sophiant.com/images/sunrise.jpg" style="float: right" alt=""/></p>
+
+<p>Parting Shot: Sunrise somewhere in the middle of nowhere.</p>
+
+![Texas Sunrise](sunrise.jpg)
