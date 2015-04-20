@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>The Middleman</title>
+
+    <link href="/stylesheets/app.css" rel="stylesheet" type="text/css" />
+
+    <script src="/javascripts/modernizr.js" type="text/javascript"></script>
+  </head>
+
+  <body class="blog blog_category blog_category_tech blog_category_tech_index">
+
+    <div class="fixed">
+      <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="/">Sophiant</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon">
+            <a href="#"><span>Menu</span></a>
+          </li>
+        </ul>
+
+        <section class="top-bar-section">
+          <!-- Right Nav Section -->
+          <ul class="right">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/philosophy/">Philosophy</a></li>
+            <li class="active"><a href="/blog/">Blog</a></li>
+          </ul>
+        </section>
+      </nav>
+    </div>
+
+    <div class="row">
+  <div class="large-10 large-offset-1 columns">
+      <h3><a href="/blog/2010/01/custom-subversion-build-on-mac-os-x/">Custom Subversion Build on Mac OS X</a></h3>
+  <p>A few weeks back I found myself having to build subversion from scratch on Mac OS X. I think the version that comes shipped on the mac is a few revs back and if I recall we were having trouble with unfuddle, and their recommendation at the time (though they subsequently fixed the issue) was to upgrade your subversion client to the latest version. As of this writing that was v1.6.6</p>
+
+<p>There was a serious "gotcha" that I ran across when trying to build the subversion libraries (I was getting an obscure "symbol not found: _ne_set_connect_timeout" error), and it had to do with the LDFLAGS environment variable that the auto-generated Makefile created. Here are my notes on what I had to do in order to get this working. Note: this assumes that you have all of the Mac Developer tools already installed. There are lots of posts on the interwebs on how to do that.
+
+  <a href="/blog/2010/01/custom-subversion-build-on-mac-os-x/">Read more</a>
+  <hr />
+  <h3><a href="/blog/2009/11/tokyo-cabinet-install-ubuntu/">Tokyo Cabinet Install Ubuntu</a></h3>
+  <p>If you run into this error:</p>
+
+<pre lang="bash">
+checking bzlib.h usability... no
+checking bzlib.h presence... no
+checking for bzlib.h... no
+configure: error: bzlib.h is required
+</pre>
+
+<p>It's because you need the bzlib devel package. On ubuntu, it's (obviously?) libbz2-dev...</p>
+  <a href="/blog/2009/11/tokyo-cabinet-install-ubuntu/">Read more</a>
+  <hr />
+  <h3><a href="/blog/2009/11/upgrading-rails12-to-234/">Upgrading Rails 1.2.6 -> 2.3.4</a></h3>
+  <p>Yes, it's pretty sad that I still have a few sites running on 1.2.6. There's been plenty of good articles out there about the various steps you need to take to upgrade your app. Here's a quick rundown of some of the gotchas I ran into during this most recent upgrade for an old client.</p>
+<h4>No More acts_as_list</h4>
+<p>This one is easy:</p>
+
+<pre lang="bash">ruby script/plugin install acts_as_list</pre>
+<h4>File Column</h4>
+<p>Back in the day this plugin was the shiznet. Sure there are lots of newer (and better) implementations (try <a href="http://www.thoughtbot.com/projects/paperclip" target="_blank">Thoughbot's Paperclip</a>). But if you are lazy (like me) the file column plugin still works. However, their code relies on what was just the plain vanilla Inflector module. You have to go in and replace all mentions of Inflector with ActiveSupport::Inflector.
+
+  <a href="/blog/2009/11/upgrading-rails12-to-234/">Read more</a>
+  <hr />
+  <h3><a href="/blog/2009/11/sinatra-passenger-nginx-wordpress/">Sinatra, Passenger / Nginx, Wordpress</a></h3>
+  <p>This blog uses this technology stack (at the time of this writing). I didn't want the basic content pages to running under Wordpress, for a couple of reasons - predominantly because I wanted to use Sinatra and try my hand at Haml. That and a rack config...</p>
+  <a href="/blog/2009/11/sinatra-passenger-nginx-wordpress/">Read more</a>
+  <hr />
+  <h3><a href="/blog/2009/11/google-analytics-api-wrapper/">Google Analytics API Wrapper</a></h3>
+  <p>I wrote this simple class last Friday as part of what was supposed to be my skunkworks day (I only got 20 minutes to myself… sigh). Time management for another post! In any event, I was messing around with the Google Analytics API - the majority of my company's domains use this app and that it would be good to prototype some functionality that could go grab visitors and bounces, could parse the responses and throw the result into an XML format that our Fusion Charts software could then display. Here's some mocked up code that could get you started.</p>
+
+
+  <a href="/blog/2009/11/google-analytics-api-wrapper/">Read more</a>
+  <hr />
+  <h3><a href="/blog/2009/10/no-input-file-specified/">No input file specified.</a></h3>
+  <p>Running nginx and trying to proxy php requests to a fastcgi backend? Testing dummy php page requests and expecting the "standard" nginx 404 page? Getting a cryptic PHP message instead?</p>
+
+<p>This may help. NOTE: the try_files is the key! (only available as of nginx 0.7.27, I believe)
+
+  <a href="/blog/2009/10/no-input-file-specified/">Read more</a>
+  <hr />
+  <h3><a href="/blog/2005/11/fun-with-imagemagick-rmagick/">Fun With ImageMagick / RMagick</a></h3>
+  <p>So I've been having some trying to get ImageMagick and RMagick (the ruby bindings to ImageMagick) installed on my server for a while now.  If you've ever had a similar problem here's a few gotchas that I encountered.</p>
+<p>First off before installing ImageMagick be sure that you have the delegate libraries of the file formats that you wish to convert already installed.  An example would be libjpeg for JPEG images.  This FAQ tells you <a href="http://rmagick.rubyforge.org/install-faq.html#imprereq">
+what delegates are required</a> and provides links to the libraries to build on your machine.  Once they are set up you can download the ImageMagick source and then build is fairly straightforward.</p>
+
+  <a href="/blog/2005/11/fun-with-imagemagick-rmagick/">Read more</a>
+  <hr />
+  <h3><a href="/blog/2005/11/some-rails-thoughts/">Some Rails Thoughts</a></h3>
+  <p>So I've been doing some work with Ruby on Rails lately and I have to say that so far  I've really enjoyed working with the language.  I think that a lot of the articles out there saying it's the greatest thing since sliced bread are a bit over-hyped...</p>
+  <a href="/blog/2005/11/some-rails-thoughts/">Read more</a>
+  <hr />
+  <h3><a href="/blog/2005/11/a-new-look-for-sophiant/">A New Look For Sophiant</a></h3>
+  <p>So I got around to updating the look of Sophiant.  I incorporated a couple of new things.  First and foremost I did away with the &lt;table&gt; layout and got with the times and did the &lt;div&gt; thing.  Threw in some CSS and holy cow!  The HTML code is a lot...</p>
+  <a href="/blog/2005/11/a-new-look-for-sophiant/">Read more</a>
+  
+
+  </div>
+</div>
+
+
+    <footer>
+  <div class="row">
+    <div class="medium-4 medium-4 push-8 columns">
+      <ul class="home-social">
+        <li><a href="http://www.twitter.com/ckraybill" class="twitter">Twitter</a></li>
+        <li><a href="https://github.com/sophiant" class="github">Github</a></li>
+        <li><a href="mailto:chris@sophiant.com" class="mail">Email</a></li>
+      </ul>
+    </div>
+
+    <div class="medium-8 medium-8 pull-4 columns">
+      <ul class="address">
+        <li>61020 River Bluff Trl.</li>
+        <li>&middot;</li>
+        <li>Bend, Oregon 97702</li>
+        <li>&middot;</li>
+        <li>Tel. (541) 719-8763</li>
+      </ul>
+    </div>
+
+    <p class="copyright">&copy; 2005&dash;2015 Sophiant, LLC. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+  </body>
+</html>
