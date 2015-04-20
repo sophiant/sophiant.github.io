@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Upgrading Rails 1.2.6 -> 2.3.4</title>
+
+    <link href="/stylesheets/app.css" rel="stylesheet" type="text/css" />
+
+    <script src="/javascripts/modernizr.js" type="text/javascript"></script>
+  </head>
+
+  <body class="blog blog_2009 blog_2009_11 blog_2009_11_upgrading-rails12-to-234 blog_2009_11_upgrading-rails12-to-234_index">
+
+    <div class="fixed">
+      <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="/">Sophiant</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon">
+            <a href="#"><span>Menu</span></a>
+          </li>
+        </ul>
+
+        <section class="top-bar-section">
+          <!-- Right Nav Section -->
+          <ul class="right">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/philosophy/">Philosophy</a></li>
+            <li class="active"><a href="/blog/">Blog</a></li>
+          </ul>
+        </section>
+      </nav>
+    </div>
+
+    <div class="row">
+  <div class="large-10 large-offset-1 columns">
+    <article>
+      <h1>Upgrading Rails 1.2.6 -> 2.3.4</h1>
+      <p>Yes, it's pretty sad that I still have a few sites running on 1.2.6. There's been plenty of good articles out there about the various steps you need to take to upgrade your app. Here's a quick rundown of some of the gotchas I ran into during this most recent upgrade for an old client.</p>
+<h4>No More acts_as_list</h4>
+<p>This one is easy:</p>
+
+<pre lang="bash">ruby script/plugin install acts_as_list</pre>
+<h4>File Column</h4>
+<p>Back in the day this plugin was the shiznet. Sure there are lots of newer (and better) implementations (try <a href="http://www.thoughtbot.com/projects/paperclip" target="_blank">Thoughbot's Paperclip</a>). But if you are lazy (like me) the file column plugin still works. However, their code relies on what was just the plain vanilla Inflector module. You have to go in and replace all mentions of Inflector with ActiveSupport::Inflector.
+</p>
+<h4>Paginate</h4>
+<p>Pagination is another dead beast. <a href="http://github.com/mislav/will_paginate" target="_blank">Mislav's will_paginate</a> is the de-facto standard it seems these days. Here's a couple of sample diffs of what I had to do in my admin controller's and views to swap it out.</p>
+<h5>Controller:</h5>
+<pre lang="bash">-    @project_pages, @projects = paginate :projects, :per_page =&gt; 30, :order =&gt; sort_clause
++    @projects = Project.paginate(:page =&gt; params[:page], :per_page =&gt; 10, :order =&gt; sort_clause)</pre>
+<h5>View:</h5>
+<pre lang="bash">
+-&lt;%= render :partial =&gt; 'layouts/paginator', :locals =&gt; { :paginator =&gt; @project_pages } %&gt;
++&lt;%= will_paginate(@projects) %&gt;
+</pre>
+
+<p>Easy-peasy.</p>
+<h4>No Scaffold</h4>
+<p>This one is a little more of a pain. I didn't want to muck around with writing a bunch of controller actions (like I said, I'm lazy!). So I used to have something like this in my controllers:</p>
+
+<pre lang="ruby">
+class Admin::ProjectsController &lt; Admin::BaseController
+  scaffold :project
+  ...stuff...
+end
+</pre>
+
+<p>To replace this I looked at a few alternatives. Active_scaffolding was probably the "right" approach, but I came across the plugin scaffolding and it seemed like the closest drop-in replacement.</p>
+
+<pre lang="bash">ruby script/plugin install scaffolding</pre>
+
+<p>Now unfortunately that plugin hasn't been kept up to date with all of the latest Rails releases. In particular the plugin uses a template_exists? method that no longer exists in ActionController::Base anymore:</p>
+
+<p>So if you get something like this</p>
+
+<p><code>undefined method `template_exists?' for #meh</code></p>
+
+<p>in your logs just add this method to the plugin. I added mine to the private section of scaffolding.rb just before the def render method</p>
+
+<pre lang="ruby">
+def template_exists?(path)
+  self.view_paths.find_template(path, response.template.template_format)
+rescue ActionView::MissingTemplate
+  false
+end
+</pre>
+<h4>Closing Thought</h4>
+<p>Of course don't forget to</p>
+<pre lang="bash">rake rails:update</pre>
+
+    </article>
+  </div>
+</div>
+
+
+    <footer>
+  <div class="row">
+    <div class="medium-4 medium-4 push-8 columns">
+      <ul class="home-social">
+        <li><a href="http://www.twitter.com/ckraybill" class="twitter">Twitter</a></li>
+        <li><a href="https://github.com/sophiant" class="github">Github</a></li>
+        <li><a href="mailto:chris@sophiant.com" class="mail">Email</a></li>
+      </ul>
+    </div>
+
+    <div class="medium-8 medium-8 pull-4 columns">
+      <ul class="address">
+        <li>61020 River Bluff Trl.</li>
+        <li>&middot;</li>
+        <li>Bend, Oregon 97702</li>
+        <li>&middot;</li>
+        <li>Tel. (541) 719-8763</li>
+      </ul>
+    </div>
+
+    <p class="copyright">&copy; 2005&dash;2015 Sophiant, LLC. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+  </body>
+</html>

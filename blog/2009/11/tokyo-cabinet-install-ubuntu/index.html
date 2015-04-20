@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Sophiant | A Bend, Oregon Web Consultancy</title>
+    <title>Tokyo Cabinet Install Ubuntu</title>
 
     <link href="/stylesheets/app.css" rel="stylesheet" type="text/css" />
 
     <script src="/javascripts/modernizr.js" type="text/javascript"></script>
   </head>
 
-  <body class="index">
+  <body class="blog blog_2009 blog_2009_11 blog_2009_11_tokyo-cabinet-install-ubuntu blog_2009_11_tokyo-cabinet-install-ubuntu_index">
 
     <div class="fixed">
       <nav class="top-bar" data-topbar role="navigation">
@@ -28,32 +28,38 @@
         <section class="top-bar-section">
           <!-- Right Nav Section -->
           <ul class="right">
-            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/about/">About</a></li>
             <li><a href="/philosophy/">Philosophy</a></li>
-            <li><a href="/blog/">Blog</a></li>
+            <li class="active"><a href="/blog/">Blog</a></li>
           </ul>
         </section>
       </nav>
     </div>
 
-    <div class="hero-panel">
-  <h2>
-    We Build Custom Applications
-    <span class="hide-for-small-only">For Web And Mobile</span>
-  </h2>
-</div>
+    <div class="row">
+  <div class="large-10 large-offset-1 columns">
+    <article>
+      <h1>Tokyo Cabinet Install Ubuntu</h1>
+      <p>If you run into this error:</p>
 
-<div class="row">
-  <div class="large-4 columns">
-    <h4>Get IT Done.</h4>
-    <p>Sophiant builds custom web applications. We do this with passion and the utmost focus on our customer's success.</p>
-  </div>
+<pre lang="bash">
+checking bzlib.h usability... no
+checking bzlib.h presence... no
+checking for bzlib.h... no
+configure: error: bzlib.h is required
+</pre>
 
-  <div class="large-8 columns">
-    <h4>Choose Sophiant.</h4>
-    <p>The consultants at Sophiant are part business architects and part technology advocates. Mixing these in the right proportion is what makes us unique. Balance is an all-encompassing theme in our work. We promote a balanced lifestyle, knowing this allows the individual to achieve their highest potential.</p>
-    <p>This also guides our balanced approach to systems development. It's a recipe for success. Bridging wisdom and intuition in all that we do.</p>
+<p>It's because you need the bzlib devel package. On ubuntu, it's (obviously?) libbz2-dev:</p>
+
+<pre lang="bash">
+sudo apt-get install libbz2-dev
+</pre>
+
+<p>Then your ./configure might work a little better…</p>
+
+
+    </article>
   </div>
 </div>
 

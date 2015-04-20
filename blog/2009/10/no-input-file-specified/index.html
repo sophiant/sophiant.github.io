@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Sophiant | A Bend, Oregon Web Consultancy</title>
+    <title>No input file specified.</title>
 
     <link href="/stylesheets/app.css" rel="stylesheet" type="text/css" />
 
     <script src="/javascripts/modernizr.js" type="text/javascript"></script>
   </head>
 
-  <body class="index">
+  <body class="blog blog_2009 blog_2009_10 blog_2009_10_no-input-file-specified blog_2009_10_no-input-file-specified_index">
 
     <div class="fixed">
       <nav class="top-bar" data-topbar role="navigation">
@@ -28,32 +28,34 @@
         <section class="top-bar-section">
           <!-- Right Nav Section -->
           <ul class="right">
-            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/about/">About</a></li>
             <li><a href="/philosophy/">Philosophy</a></li>
-            <li><a href="/blog/">Blog</a></li>
+            <li class="active"><a href="/blog/">Blog</a></li>
           </ul>
         </section>
       </nav>
     </div>
 
-    <div class="hero-panel">
-  <h2>
-    We Build Custom Applications
-    <span class="hide-for-small-only">For Web And Mobile</span>
-  </h2>
-</div>
+    <div class="row">
+  <div class="large-10 large-offset-1 columns">
+    <article>
+      <h1>No input file specified.</h1>
+      <p>Running nginx and trying to proxy php requests to a fastcgi backend? Testing dummy php page requests and expecting the "standard" nginx 404 page? Getting a cryptic PHP message instead?</p>
 
-<div class="row">
-  <div class="large-4 columns">
-    <h4>Get IT Done.</h4>
-    <p>Sophiant builds custom web applications. We do this with passion and the utmost focus on our customer's success.</p>
-  </div>
+<p>This may help. NOTE: the try_files is the key! (only available as of nginx 0.7.27, I believe)
+</p>
+<pre lang="bash"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+#
+location ~ .*.php$ {
+    try_files  $uri  /404.html;
+    fastcgi_pass   127.0.0.1:9000;
+    fastcgi_index  index.php;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    include        fastcgi_params;
+}</pre>
 
-  <div class="large-8 columns">
-    <h4>Choose Sophiant.</h4>
-    <p>The consultants at Sophiant are part business architects and part technology advocates. Mixing these in the right proportion is what makes us unique. Balance is an all-encompassing theme in our work. We promote a balanced lifestyle, knowing this allows the individual to achieve their highest potential.</p>
-    <p>This also guides our balanced approach to systems development. It's a recipe for success. Bridging wisdom and intuition in all that we do.</p>
+    </article>
   </div>
 </div>
 

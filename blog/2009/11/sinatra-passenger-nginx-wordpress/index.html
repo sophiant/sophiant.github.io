@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Sophiant | A Bend, Oregon Web Consultancy</title>
+    <title>Sinatra, Passenger / Nginx, Wordpress</title>
 
     <link href="/stylesheets/app.css" rel="stylesheet" type="text/css" />
 
     <script src="/javascripts/modernizr.js" type="text/javascript"></script>
   </head>
 
-  <body class="index">
+  <body class="blog blog_2009 blog_2009_11 blog_2009_11_sinatra-passenger-nginx-wordpress blog_2009_11_sinatra-passenger-nginx-wordpress_index">
 
     <div class="fixed">
       <nav class="top-bar" data-topbar role="navigation">
@@ -28,32 +28,52 @@
         <section class="top-bar-section">
           <!-- Right Nav Section -->
           <ul class="right">
-            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/about/">About</a></li>
             <li><a href="/philosophy/">Philosophy</a></li>
-            <li><a href="/blog/">Blog</a></li>
+            <li class="active"><a href="/blog/">Blog</a></li>
           </ul>
         </section>
       </nav>
     </div>
 
-    <div class="hero-panel">
-  <h2>
-    We Build Custom Applications
-    <span class="hide-for-small-only">For Web And Mobile</span>
-  </h2>
-</div>
+    <div class="row">
+  <div class="large-10 large-offset-1 columns">
+    <article>
+      <h1>Sinatra, Passenger / Nginx, Wordpress</h1>
+      <p>This blog uses this technology stack (at the time of this writing). I didn't want the basic content pages to running under Wordpress, for a couple of reasons - predominantly because I wanted to use Sinatra and try my hand at Haml. That and a rack config is pretty tight (my entire application is one app.rb file). I pretty much followed the steps outlined by this article to get the basic set up working: http://railsdog.com/blog/2009/06/using-rack-to-combine-sinatra-and-word-press/. However, the web server passenger was running under was for Apache. I finally got this working with the following nginx config snippet.</p>
 
-<div class="row">
-  <div class="large-4 columns">
-    <h4>Get IT Done.</h4>
-    <p>Sophiant builds custom web applications. We do this with passion and the utmost focus on our customer's success.</p>
-  </div>
+<!--more -->
 
-  <div class="large-8 columns">
-    <h4>Choose Sophiant.</h4>
-    <p>The consultants at Sophiant are part business architects and part technology advocates. Mixing these in the right proportion is what makes us unique. Balance is an all-encompassing theme in our work. We promote a balanced lifestyle, knowing this allows the individual to achieve their highest potential.</p>
-    <p>This also guides our balanced approach to systems development. It's a recipe for success. Bridging wisdom and intuition in all that we do.</p>
+<pre lang="bash">
+    location / {
+passenger_enabled  on;
+    }
+
+    location /blog {
+passenger_enabled  off;
+index          index.html index.htm index.php;
+
+# custom wordpress rewrite for SEO-friendly URLs
+#
+if (!-e $request_filename) {
+    rewrite ^(.+)$ /blog/index.php?q=$1 last;
+    break;
+}
+    }
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    location ~ .*.php$ {
+try_files  $uri  /404.html;
+fastcgi_pass   127.0.0.1:9000;
+fastcgi_index  index.php;
+fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+include        fastcgi_params;
+    }
+</pre>
+
+    </article>
   </div>
 </div>
 

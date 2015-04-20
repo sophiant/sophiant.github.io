@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Google Analytics API Wrapper</title>
+
+    <link href="/stylesheets/app.css" rel="stylesheet" type="text/css" />
+
+    <script src="/javascripts/modernizr.js" type="text/javascript"></script>
+  </head>
+
+  <body class="blog blog_2009 blog_2009_11 blog_2009_11_google-analytics-api-wrapper blog_2009_11_google-analytics-api-wrapper_index">
+
+    <div class="fixed">
+      <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="/">Sophiant</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon">
+            <a href="#"><span>Menu</span></a>
+          </li>
+        </ul>
+
+        <section class="top-bar-section">
+          <!-- Right Nav Section -->
+          <ul class="right">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/philosophy/">Philosophy</a></li>
+            <li class="active"><a href="/blog/">Blog</a></li>
+          </ul>
+        </section>
+      </nav>
+    </div>
+
+    <div class="row">
+  <div class="large-10 large-offset-1 columns">
+    <article>
+      <h1>Google Analytics API Wrapper</h1>
+      <p>I wrote this simple class last Friday as part of what was supposed to be my skunkworks day (I only got 20 minutes to myself… sigh). Time management for another post! In any event, I was messing around with the Google Analytics API - the majority of my company's domains use this app and that it would be good to prototype some functionality that could go grab visitors and bounces, could parse the responses and throw the result into an XML format that our Fusion Charts software could then display. Here's some mocked up code that could get you started.</p>
+
+
+
+<pre lang="ruby">
+require 'rubygems'
+require 'httparty'
+
+class GoogleAnalytics
+  include HTTParty
+  base_uri 'https://www.google.com/analytics/feeds'
+
+  class &lt;&lt; self
+    attr_accessor :auth
+  end
+
+  def self.login(email, password)
+    result = post("https://www.google.com/accounts/ClientLogin", :query =&gt; {:accountType =&gt; 'GOOGLE', :Email =&gt; email, :Passwd =&gt; password, :service=&gt; 'analytics', :source =&gt; '&lt;&lt; your company &gt;&gt;-&lt;&lt; your app name &gt;&gt;-&lt;&lt; some unique version &gt;&gt;'}, :body =&gt; '')
+    self.auth = result.include?('Auth=') ? result.split("\n").last.split('=').last : ""
+  end
+
+  def self.accounts
+    get("/accounts/default",{:format =&gt; :xml, :headers =&gt; authorization})
+  end
+
+  #
+  # GoogleAnalytics.data(:query =&gt; { :ids =&gt; "ga:&lt;&lt; your google analytics id&gt;&gt;", :metrics =&gt; "ga:visits,ga:bounces", 'start-date' =&gt; "2009-10-01", 'end-date' =&gt; "2009-10-31" })
+  #
+  def self.data(options = {})
+    options.merge!({:format =&gt; :xml, :headers =&gt; authorization})
+    get("/data",options)
+  end
+
+  def self.authorization
+    {'Authorization' =&gt; "GoogleLogin auth=#{self.auth}"}
+  end
+
+end
+</pre>
+
+<p>I didn't get the response body back to compatible fusion charts done, but the HTTParty works great.</p>
+
+    </article>
+  </div>
+</div>
+
+
+    <footer>
+  <div class="row">
+    <div class="medium-4 medium-4 push-8 columns">
+      <ul class="home-social">
+        <li><a href="http://www.twitter.com/ckraybill" class="twitter">Twitter</a></li>
+        <li><a href="https://github.com/sophiant" class="github">Github</a></li>
+        <li><a href="mailto:chris@sophiant.com" class="mail">Email</a></li>
+      </ul>
+    </div>
+
+    <div class="medium-8 medium-8 pull-4 columns">
+      <ul class="address">
+        <li>61020 River Bluff Trl.</li>
+        <li>&middot;</li>
+        <li>Bend, Oregon 97702</li>
+        <li>&middot;</li>
+        <li>Tel. (541) 719-8763</li>
+      </ul>
+    </div>
+
+    <p class="copyright">&copy; 2005&dash;2015 Sophiant, LLC. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+  </body>
+</html>

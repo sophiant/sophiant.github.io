@@ -3376,30 +3376,28 @@ th.hide-for-touch { display: table-cell !important; }
 
 /* line 23, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
 .hero-panel-smaller { height: 250px; background: url(/images/bg-other.jpg) no-repeat bottom center fixed; }
-/* line 27, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
-.hero-panel-smaller h2 { padding-top: 1em; }
 
-/* line 32, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
+/* line 28, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
 footer { background: #333; margin-top: 5em; padding: 24px 0 10px; }
-/* line 34, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
+/* line 30, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
 footer a { color: #666; padding: 3px 6px; }
-/* line 35, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
+/* line 31, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
 footer a:hover { color: #777; }
-/* line 38, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
+/* line 34, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
 footer ul.address { margin: 0; display: inline-block; padding-bottom: 0px; color: #666; }
-/* line 39, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
+/* line 35, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
 footer ul.address li { display: block; float: left; margin-left: 6px; font-weight: 700; font-size: 0.75rem; }
-/* line 40, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
+/* line 36, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
 footer ul.address li a { color: #666; padding: 3px 6px; }
-/* line 41, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
+/* line 37, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
 footer ul.address li a:hover { color: #777; }
-/* line 46, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
+/* line 42, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
 footer ul.home-social { display: block; float: right; margin-bottom: 8px; }
-/* line 47, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
+/* line 43, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
 footer ul.home-social li { list-style: none; display: block; float: left; margin-left: 10px; }
-/* line 48, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
+/* line 44, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
 footer ul.home-social li:first-child { margin-left: 0; }
-/* line 49, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
+/* line 45, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
 footer ul.home-social li a { display: block; height: 50px; width: 50px; }
-/* line 53, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
+/* line 49, /Users/chriskraybill/workspace/middleman/sophiant/source/stylesheets/app.css.scss */
 footer p.copyright { margin: 6px 0 0; font-size: 0.75rem; color: #666; }
