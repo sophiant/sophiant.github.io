@@ -3,6 +3,8 @@ pageable: true
 per_page: 5
 ---
 
+<%= partial 'layouts/small_hero', locals: { h2_text: 'Blog' } %>
+
 <div class="row">
   <div class="large-10 large-offset-1 columns">
     <% if paginate && num_pages > 1 %>
